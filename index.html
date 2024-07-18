@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 0</title>
+    <style>
+        body {
+            background-color: slategray;
+        }
+
+        .bg_wrap {
+            max-width: 40em;
+            background-color: lightsteelblue;
+            border-radius: 10px;
+            padding: 2em;
+            margin: 1em auto;
+        }
+
+        #contain {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        #contain h1 {
+            font-weight: 600;
+            font-size: 1.8em;
+        }
+
+        #contain .imgwrap {
+            height: 8em;
+            width: 8em;
+            margin: 2.5em auto;
+            border: 1px solid black;
+            border-radius: 100%;
+            padding: 10px;
+            background-color: white;
+        }
+
+        #contain .imgwrap img {
+            width: 100%;
+            border-radius: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .stack {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .stack div {
+            border-radius: 10px;
+            /* background-color: rgb(201, 141, 113); */
+            background-color: rgb(108, 150, 150);
+            padding: 10px;
+            text-align: start;
+        }
+        #TimerContainer span{
+            font-size: 1.2em;
+        }
+        @media(max-width:658px) {
+            .bg_wrap {
+                width: fit-content;
+                margin: auto;
+            }
+        }
+
+        @media(max-width:500px) {
+            .bg_wrap {
+                padding: 1em;
+            }
+
+            body {
+                padding: 0px;
+                margin: 0px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="bg_wrap">
+        <main id="contain">
+            <h1>My Tech Goals for the Next 2 Years</h1>
+            <div class="imgwrap">
+                <img src="./images/avatar.png" alt="">
+            </div>
+            <div style="line-height: 0.5em; font-size: 1.1em; padding-bottom: 0.5em;">
+                <p>Dev.preete</p>
+                <a href="mailto:ismailbarakatopeyemi05@gmail.com">Ismailbarakatopeyemi05@gmail.com</a>
+            </div>
+            <div>
+                <h2>Goals</h2>
+                <p>Over the next two years, I am committed to elevating my expertise and influence in the tech industry
+                    by focusing on several key objectives like:</p>
+            </div>
+            <div class="stack">
+                <div>
+                    <b>Master the full spectrum of web development:</b> To achieve this, I will first concentrate on
+                    enhancing my frontend skills by deepening my proficiency in React.js and learning Vue.js. I will
+                    build sophisticated, user-friendly interfaces and ensure my projects adhere to the latest design and
+                    performance standards. Concurrently, I will bolster my backend capabilities by diving deeper into
+                    Node.js/Express.js and also learn PHP/Laravel to add another layer of versatility to my skill set.
+                </div>
+                <div>
+                    <b>Contribute to Open-Source Projects:</b> Recognizing the importance of community and
+                    collaboration, I plan to actively contribute to open-source projects.Through consistent
+                    contributions and engagement in the open-source community, I aim to establish myself as a reliable
+                    and innovative developer.
+                </div>
+                <div>
+                    <b>Venture into mobile development:</b> By learning frameworks such as React Native and Flutter, I
+                    will be able to create cross-platform mobile applications to expand my skills into mobile
+                    development.
+                </div>
+                <div>
+                    <b>Gain real-world experience:</b> To gain real-world experience, I will seek opportunities to work
+                    with esteemed companies, both in physical office environments and remotely. This will allow me to
+                    apply my skills in professional settings, understand industry practices, and collaborate with
+                    experienced teams. Working in diverse environments will also help me adapt to different workflows
+                    and cultures, enhancing my overall professional development.
+                </div>
+            </div>
+
+            <p>In conclusion, over the next two years, I aim to significantly advance my technical skills, make
+                meaningful contributions to the tech community, gain valuable real-world experience, and establish a
+                strong professional presence. Through continuous learning, practical application, and active engagement,
+                I am determined to become a well-rounded and respected web and mobile developer.</p>
+            <div>
+                <h3>Current Time in UTC:</h3>
+                <div id="TimerContainer">
+                    <span id="hr">00</span>
+                    <span>:</span>
+                    <span id="min">00</span>
+                    <span>:</span>
+                    <span id="sec">00</span>
+                </div>
+            </div>
+            <div id="TimerContainer">
+                <h3>Current Day:</h3>
+                <span id="day"></span>
+            </div>
+        </main>
+    </section>
+</body>
+<script>
+    const dateGetter = {
+        hr: document.getElementById("hr"),
+        min: document.getElementById("min"),
+        sec: document.getElementById("sec"),
+        day: document.getElementById("day")
+    }
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+    let interval = null;
+
+    function Timer(params) {
+        const date = new Date()
+        const dateSetter = {
+            hr: date.getUTCHours(),
+            min: date.getUTCMinutes(),
+            sec: date.getUTCSeconds(),
+            day: date.getUTCDay()
+        }
+        if (String(dateSetter.hr).length <= 1) {
+            dateGetter.hr.innerHTML = `0${dateSetter.hr}`
+        } else {
+            dateGetter.hr.innerHTML = dateSetter.hr
+        }
+        if (String(dateSetter.min).length <= 1) {
+            dateGetter.min.innerHTML = `0${dateSetter.min}`
+        } else {
+            dateGetter.min.innerHTML = dateSetter.min
+        }
+        if (String(dateSetter.sec).length <= 1) {
+            dateGetter.sec.innerHTML = `0${dateSetter.sec}`
+        } else {
+            dateGetter.sec.innerHTML = dateSetter.sec
+        }
+        dateGetter.day.innerHTML = daysOfWeek[dateSetter.day]
+    }
+
+    interval = setInterval(() => {
+        Timer()
+    }, 1000)
+
+</script>
+
+</html>
